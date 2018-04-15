@@ -28,7 +28,7 @@ class ProductController extends Controller
 
     public function category_product($id){
       $CategoryProduct = CategoryProduct::find($id);
-      $Product = Product::where('categoryproducts_id', $id)->simplePaginate(12);
+      $Product = Product::where('categoryproducts_id', $id)->simplePaginate(2);
       //dd($Product[0]->productimage);
       return view('front/category_product', ['CategoryProduct' => $CategoryProduct, 'Product' =>$Product]);
     }

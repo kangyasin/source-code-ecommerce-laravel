@@ -32,7 +32,7 @@ Dashboard LaraCommerce Yasin
 
                        <div class="form-group {{ !$errors->has('files') ?: 'has-error' }}">
                            <label>File</label>
-                           <input type="file" name="files[]"multiple>
+                           <input type="file" name="files[]" multiple>
 
                            <span class="help-block text-danger">{{ $errors->first('files') }}</span>
                        </div>

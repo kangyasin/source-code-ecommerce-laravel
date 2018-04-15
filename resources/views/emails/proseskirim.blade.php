@@ -98,9 +98,9 @@ LaraCommerce Yasin : Invoice
                   <tr>
                     <td>
                       {{$customer->nama}}<br/>
-                      {{$alamat->namalamat}}<br/>
+                      <!-- {{$alamat->namalamat}}<br/> -->
                       {{$alamat->alamat}} <br/>
-                      {{$alamat->kota}} <br/>
+                      {{$alamat->provinsi}} - {{$alamat->kota}}, {{$alamat->kodepos}} <br/>
                       Telp: {{$alamat->notelp}}
                     </td>
                   </tr>

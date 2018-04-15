@@ -134,7 +134,7 @@ LaraCommerce Yasin : Invoice
           <p>Cheers,
           <br>LaraCommerce Team</p>
           <!-- Sub copy -->
-          <table class="body-sub">
+          <table width="100%" cellpadding="0" cellspacing="0">
             <tr>
               <td>
                 <p class="sub">Jika tombol pembayaran diatas tidak berfungsi silahkan copy dan paste link dibawah ini pada browser anda.</p>

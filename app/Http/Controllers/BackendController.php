@@ -1576,10 +1576,39 @@ class BackendController extends Controller
 
       $table = TsHdPayment::find($id);
       $hdtransaksi = $table->ts_hdtransaksi_id;
+      
+      $transaksi = TsHdTransaksi::find($hdtransaksi);
+      $dttransaksi = TsDtTransaksi::where('ts_hdtransaksi_id',$hdtransaksi)->get();
+      
+    
+      
+      
+        
+      
 
       if($status == 1){
-
+        
         // Pembayaran disetujui
+         
+        foreach ($dttransaksi as $value) {
+          $idProduct = $value->detailproducts_id;
+          $GetStok = LogStocks::where('detailproducts_id',$idProduct)->orderBy('id', 'desc')->first();
+          
+          $totalstok = $GetStok->totalstok;
+          $totalstokakhir = $totalstok - $value->jumlahpembelian;
+          
+          $keluarbarang = new LogStocks;
+          $keluarbarang->detailproducts_id = $idProduct;
+          $keluarbarang->masuk = 0;
+          $keluarbarang->keluar = $value->jumlahpembelian;
+          $keluarbarang->totalstok = $totalstokakhir;
+          $keluarbarang->tanggal = date('Y-m-d');
+          $keluarbarang->save();
+          
+          // LogStocks::where('id', $GetStok->$id)->update(['totalstok' => $totalstokakhir, 'keluar' => $value->jumlahpembelian]);
+          
+        }
+        
         $job = (new \App\Jobs\SendingApprove($table))->delay(5);
         $this->dispatch($job);
 
@@ -1587,6 +1616,16 @@ class BackendController extends Controller
       }elseif($status == 2){
 
         // Proses Kirim
+        // foreach ($dttransaksi as $value) {
+        //   $idProduct = $value->detailproducts_id;
+        //   $GetStok = LogStocks::where('detailproducts_id',$idProduct)->orderBy('id', 'desc')->first();
+        //
+        //   $totalstok = $GetStok->totalstok;
+        //   $totalstokakhir = $totalstok - $value->jumlahpembelian;
+        //
+        //   LogStocks::where('id', $GetStok->$id)->update(['totalstok' => $totalstokakhir, 'keluar' => $value->jumlahpembelian]);
+        //
+        // }
         $job = (new \App\Jobs\SendingProduct($table))->delay(5);
         $this->dispatch($job);
 
