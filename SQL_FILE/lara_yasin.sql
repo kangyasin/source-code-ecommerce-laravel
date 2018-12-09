@@ -13,8 +13,8 @@
 
 
 -- Dumping database structure for lara_yasin
-CREATE DATABASE IF NOT EXISTS `lara_yasin` /*!40100 DEFAULT CHARACTER SET latin1 */;
-USE `lara_yasin`;
+CREATE DATABASE IF NOT EXISTS `bnsp_shop` /*!40100 DEFAULT CHARACTER SET latin1 */;
+USE `bnsp_shop`;
 
 -- Dumping structure for table lara_yasin.about
 CREATE TABLE IF NOT EXISTS `about` (
